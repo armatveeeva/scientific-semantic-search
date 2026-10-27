@@ -46,7 +46,7 @@ def find_similar_articles(query_text: str, top_k: int = 2):
 
 
 def summarize_text(text: str) -> str:
-    """LLM-суммаризация с защитой от сбоев"""
+    """Абстрактивная LLM-суммаризация с защитой от сбоев"""
     try:
         max_length = min(len(text), 1024)
         summary = summarizer_pipeline(text[:max_length], max_length=100, min_length=30, do_sample=False)

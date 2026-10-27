@@ -1,3 +1,6 @@
+import os
+os.environ["OMP_NUM_THREADS"] = "1"
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import List
@@ -8,6 +11,7 @@ app = FastAPI(
     description="Система семантического поиска и LLM-суммаризации научных публикаций",
     version="1.0.0",
 )
+
 
 class QueryRequest(BaseModel):
     text: str = Field(..., min_length=3, max_length=500, description="Текст запроса для поиска")
