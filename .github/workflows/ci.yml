@@ -24,5 +24,14 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
 
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-${{ hashFiles('poetry.lock') }}
+
+      - name: Seed database
+        run: poetry run python seed_db.py
+
       - name: Run tests
         run: poetry run pytest tests/ -v

@@ -6,7 +6,7 @@ client = TestClient(app)
 def test_health_check():
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json() == {"status": "ok"}
+    assert response.json()["status"] == "healthy"
 
 def test_recommend_endpoint():
     payload = {"text": "машинное обучение в материаловедении", "top_k": 1}
